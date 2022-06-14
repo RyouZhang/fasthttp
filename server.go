@@ -1884,9 +1884,9 @@ func (s *Server) Shutdown() error {
 		}
 	}
 
-	if s.done != nil {
-		close(s.done)
-	}
+	// if s.done != nil {
+	// 	close(s.done)
+	// }
 
 	s.closeIdleConns()
 
@@ -1903,6 +1903,9 @@ func (s *Server) Shutdown() error {
 		time.Sleep(time.Millisecond * 100)
 	}
 
+	if s.done != nil {
+		close(s.done)
+	}	
 	s.done = nil
 	s.ln = nil
 	return nil
